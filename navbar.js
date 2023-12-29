@@ -52,12 +52,12 @@ function NavBar(){
                     </li>
                 </ul>
                 </div>
-                <div style={{fontWeight: 'bold'}}>
+                <div style={{fontWeight: 'bold'}} title='Logged user'>
                     {ctx.loggedIndex >= 0 ? ctx.users[ctx.loggedIndex].email : ''}
                 </div>
                 
                 {ctx.loggedIndex >= 0 ? (                 
-                    <button type="submit" className="btn btn-light" onClick={logout} style={{background: 'black', color: 'white', marginLeft: '20px'}}>Logout</button>
+                    <button type="submit" className="btn btn-light" onClick={logout} style={{background: 'black', color: 'white', marginLeft: '20px'}} title='to logout'>Logout</button>
                 ) : ''
                 }
             </nav>
