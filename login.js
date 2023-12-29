@@ -108,7 +108,7 @@ function Login(){
                     <input type="input" className="form-control" id="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.currentTarget.value)} /><br/>
                     Password<br/>
                     <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.currentTarget.value)} /><br/>
-                    <button type="submit" className="btn btn-light" onClick={handleLogin}>Login</button>
+                    <button type="submit" className="btn btn-light" onClick={handleLogin}>Login</button><br/><br/>
                     <button type="submit" className="btn btn-light" onClick={loginFB}>Login with Facebook</button>
                     </>              
                 ) : (

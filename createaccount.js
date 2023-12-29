@@ -4,6 +4,7 @@ function CreateAccount(){
     const [name, setName]           = React.useState('');
     const [email, setEmail]         = React.useState('');
     const [password, setPassword]   = React.useState('');
+    const [btnstatus, setBtnstatus] = React.useState(true);
     const ctx = React.useContext(UserContext);
 
 
@@ -34,6 +35,24 @@ function CreateAccount(){
         }
         return true;
     }
+
+    function handleOnChangeName (event){
+        const newContent = event.target.value;
+        setName(newContent);
+        setBtnstatus(newContent === '');
+    };
+
+    function handleOnChangeEmail (event){
+        const newContent = event.target.value;
+        setEmail(newContent);
+        setBtnstatus(newContent === '');
+    };
+
+    function handleOnChangePassword (event){
+        const newContent = event.target.value;
+        setPassword(newContent);
+        setBtnstatus(newContent === '');
+    };
 
     function handleCreate(){
         console.log(name, email, password);
@@ -90,6 +109,7 @@ function CreateAccount(){
         setEmail('');
         setPassword('');
         setShow(true);
+        setBtnstatus(true);
     }
 
 
@@ -101,12 +121,12 @@ function CreateAccount(){
             body={show ? (
                 <>
                 Name<br/>
-                <input type="input" className="form-control" id="name" placeholder="Enter name" value={name} onChange={e => setName(e.currentTarget.value)} /><br/>
+                <input type="input" className="form-control" id="name" placeholder="Enter name" value={name} onChange={handleOnChangeName} /><br/>
                 Email address<br/>
-                <input type="input" className="form-control" id="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.currentTarget.value)} /><br/>
+                <input type="input" className="form-control" id="email" placeholder="Enter email" value={email} onChange={handleOnChangeEmail} /><br/>
                 Password<br/>
-                <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.currentTarget.value)} /><br/>
-                <button type="submit" className="btn btn-light" onClick={handleCreate}>Create Account</button>
+                <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={handleOnChangePassword} /><br/>
+                <button type="submit" className="btn btn-light" onClick={handleCreate} disabled={btnstatus}>Create Account</button><br/><br/>
                 <button type="submit" className="btn btn-light" onClick={signUpFB}>Sign Up with Facebook</button>
                 </>
             ) : (

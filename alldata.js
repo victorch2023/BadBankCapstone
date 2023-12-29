@@ -1,18 +1,13 @@
 function AllData(){
+  const ctx = React.useContext(UserContext);
 
-    const ctx = React.useContext(UserContext);
-   
-    return(
-
-      <div>
-      <h1>All Data</h1>
-      
-      <div class="card text-center">
-        <div class="card-header">
-            Featured
-        </div>
-          <div class="card-body">
-              
+  console.log(ctx)
+  return(
+                  
+       <Card
+            bgcolor="primary"
+            header="All Data"
+            body={
             <card>    
               <h5 class="card-title">Registered Users</h5>
                 <table class="table">
@@ -37,12 +32,12 @@ function AllData(){
                     ))}      
                   </tbody>
                 </table> 
-            </card>
+            
     <br/>
     <br/>
     <br/>
-            <card>        
-              <h5 class="card-title">Bank Operations</h5>
+                
+             <h5 class="card-title">Bank Operations</h5>
                 <table class="table">
                   <thead>
                     <tr>
@@ -55,7 +50,7 @@ function AllData(){
                   </thead>
                   <tbody> 
                     {ctx.ops.map((user, index) => (
-                      <tr>  
+                      <tr>
                         <td>{user.userSearched}</td>
                         <td>{user.type}</td>
                         <td>{user.amount}</td>
@@ -66,8 +61,10 @@ function AllData(){
                   </tbody>
                 </table>
             </card>
-          </div>
-        </div>
-      </div>
-    )
+
+            }
+
+      />
+
+  );
 }

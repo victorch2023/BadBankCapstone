@@ -2,6 +2,7 @@ function Deposit(){
     const [show, setShow]           = React.useState(true);
     const [status, setStatus]       = React.useState('');
     const [amount,setAmount]        = React.useState('');
+    const [btnstatus, setBtnstatus] = React.useState(true);
     const ctx = React.useContext(UserContext);
     const type = 'deposit';
 
@@ -11,19 +12,36 @@ function Deposit(){
         }
         },[ctx]);
 
-    function validate(field, label){
-        if (!field){
-            setStatus('Error: ' + label);
-            setTimeout(() => setStatus(''), 3000);
-            return false;
+        function validate(field){
+            if (!field){
+                setStatus('Empty field');
+                setTimeout(() => setStatus(''), 3000);
+                setBtnstatus(true)
+                return false;
+            }
+    
+            if(isNaN(field)){
+                setStatus('Error: Is not a number');
+                setTimeout(() => setStatus(''), 3000);
+                return false;
+            }
+    
+            const number = parseFloat(field);
+            console.log(number);
+            if(number < 0){
+                setStatus('Error: Is negative');
+                setTimeout(() => setStatus(''), 3000);
+                return false;
+            }
+    
+            return true;
+    
         }
-        return true;
-    }
 
 
     function handleDeposit(){
         console.log(amount);
-        if (!validate(amount,     'amount'))        return;
+        if (!validate(amount))        return;
         ctx.users[ctx.loggedIndex].balance += Number(amount);
 
         const userSearched = ctx.users[ctx.loggedIndex].email;
@@ -45,8 +63,14 @@ function Deposit(){
     function clearForm(){
         setAmount('');
         setShow(true);
+        setBtnstatus(true);
     }
 
+    function handleOnChange (event){
+        const newContent = event.target.value;
+        setAmount(newContent);
+        setBtnstatus(newContent === '');
+    };
 
     return(
         <Card
@@ -59,14 +83,14 @@ function Deposit(){
                 <h2>USD: {ctx.loggedIndex >= 0 ? ctx.users[ctx.loggedIndex].balance : '-'}</h2><br/><br/>
                 <p>Set a deposit</p>
                 Amount<br/>
-                <input type="number" className="form-control" id="amount" placeholder="Enter amount" value={amount} onChange={e => setAmount(e.currentTarget.value)} /><br/>
-                <button type="submit" className="btn btn-light" onClick={handleDeposit}>Confirm deposit</button>
+                <input type="text" className="form-control" id="amount" placeholder="Enter amount" value={amount} onChange={handleOnChange} /><br/>
+                <button type="submit" className="btn btn-light" onClick={handleDeposit} disabled={btnstatus}>Confirm deposit</button>
                 </>
             ) : (
                 <>
                 Balance<br/>
                 <h2>USD: {ctx.users[ctx.loggedIndex].balance}</h2><br/><br/>
-                <h5>Success</h5>
+                <h5>Success deposit</h5>
                 <button type="submit" className="btn btn-light" onClick={clearForm}>Set another deposit</button>
                 </>
             )}

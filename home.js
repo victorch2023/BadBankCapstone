@@ -3,10 +3,10 @@ function Home(){
         <Card
             bgcolor="primary"
             txtcolor="white"
-            header="BadBank Landing Page"
-            title="Welcome to the bank"
-            text="You can use this bank"
-            body={(<img src="bank.png" className="img-fluid" alt="Responsive image"/>)}
+            header="Home"
+            title="Welcome to the cuttiest bad bank"
+            text="All you do here is under your responsibility. Enjoy!"
+            body={(<img src="A4.jpg" className="img-fluid" alt="Responsive image"/>)}
         />
     )
 }

@@ -2,6 +2,7 @@ function Withdraw(){
     const [show, setShow]           = React.useState(true);
     const [status, setStatus]       = React.useState('');
     const [amount,setAmount]        = React.useState('');
+    const [btnstatus, setBtnstatus] = React.useState(true);
     const ctx = React.useContext(UserContext);
     const type = 'withdraw'
 
@@ -11,19 +12,34 @@ function Withdraw(){
         }
         },[ctx]);
 
-    function validate(field, label){
-        if (!field){
-            setStatus('Error: ' + label);
-            setTimeout(() => setStatus(''), 3000);
-            return false;
+        function validate(field){
+            if (!field){
+                setStatus('Empty field');
+                setTimeout(() => setStatus(''), 3000);
+                setBtnstatus(true)
+                return false;
+            }
+    
+            if(isNaN(field)){
+                setStatus('Error: Is not a number');
+                setTimeout(() => setStatus(''), 3000);
+                return false;
+            }
+    
+            const number = parseFloat(field);
+            const balance = ctx.users[ctx.loggedIndex].balance
+            if(number > balance){
+                setStatus('Error: Withdraw exceeds balance');
+                setTimeout(() => setStatus(''), 3000);
+                return false;
+            }
+            return true;
         }
-        return true;
-    }
 
 
     function handleWithdraw(){
         console.log(amount);
-        if (!validate(amount,     'amount'))        return;
+        if (!validate(amount))        return;
         ctx.users[ctx.loggedIndex].balance -= Number(amount);
 
         const userSearched = ctx.users[ctx.loggedIndex].email;
@@ -45,8 +61,14 @@ function Withdraw(){
     function clearForm(){
         setAmount('');
         setShow(true);
+        setBtnstatus(true);
     }
 
+    function handleOnChange (event){
+        const newContent = event.target.value;
+        setAmount(newContent);
+        setBtnstatus(newContent === '');
+    };
 
     return(
         <Card
@@ -59,14 +81,14 @@ function Withdraw(){
                 <h2>USD: {ctx.loggedIndex >= 0 ? ctx.users[ctx.loggedIndex].balance : '-'}</h2><br/><br/>
                 <p>Set a withdraw</p>
                 Amount<br/>
-                <input type="number" className="form-control" id="amount" placeholder="Enter amount" value={amount} onChange={e => setAmount(e.currentTarget.value)} /><br/>
-                <button type="submit" className="btn btn-light" onClick={handleWithdraw}>Confirm withdraw</button>
+                <input type="text" className="form-control" id="amount" placeholder="Enter amount" value={amount} onChange={handleOnChange} /><br/>
+                <button type="submit" className="btn btn-light" onClick={handleWithdraw} disabled={btnstatus}>Confirm withdraw</button>
                 </>
             ) : (
                 <>
                 Balance<br/>
                 <h2>USD: {ctx.users[ctx.loggedIndex].balance}</h2><br/><br/>
-                <h5>Success</h5>
+                <h5>Success withdraw</h5>
                 <button type="submit" className="btn btn-light" onClick={clearForm}>Set another withdraw</button>
                 </>
             )}
