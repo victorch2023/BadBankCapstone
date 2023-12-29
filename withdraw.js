@@ -78,7 +78,7 @@ function Withdraw(){
             body={show ? (
                 <>
                 Balance<br/>
-                <h2>USD: {ctx.loggedIndex >= 0 ? ctx.users[ctx.loggedIndex].balance : '-'}</h2><br/><br/>
+                <h2>USD: {ctx.loggedIndex >= 0 ? ctx.users[ctx.loggedIndex].balance : '(No user logged)'}</h2><br/><br/>
                 <p>Set a withdraw</p>
                 Amount<br/>
                 <input type="text" className="form-control" id="amount" placeholder="Enter amount" value={amount} onChange={handleOnChange} /><br/>
