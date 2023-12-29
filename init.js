@@ -28,15 +28,6 @@ function Init () {
             ctx.setOps(newOps);
         });
 
-
-
-
-
-        
-        FB.getLoginStatus(function(response){
-            console.log(response);
-        })
-
         },[]);
 
 }
