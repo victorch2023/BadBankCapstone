@@ -52,7 +52,12 @@ function NavBar(){
                     </li>
                 </ul>
                 </div>
-                <div style={{fontWeight: 'bold'}} title='Logged user'>
+
+                <div>
+                    {ctx.loggedIndex >= 0 ? 'Logged User:' : ''}
+                </div>
+    
+                <div style={{fontWeight: 'bold', marginLeft: '10px'}} title='Logged user'>
                     {ctx.loggedIndex >= 0 ? ctx.users[ctx.loggedIndex].email : ''}
                 </div>
                 
