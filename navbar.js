@@ -48,7 +48,7 @@ function NavBar(){
                     </li>
 
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="alldata-tab" data-bs-toggle="tab" data-bs-target="#alldata-tab-pane" type="button" role="tab" aria-controls="alldata-tab-pane" aria-selected="false" href="#/alldata/" title='See all the users suscribed and all the operations done' style={{ color: 'black' }}>AllData</a>
+                        <a class="nav-link" id="alldata-tab" data-bs-toggle="tab" data-bs-target="#alldata-tab-pane" type="button" role="tab" aria-controls="alldata-tab-pane" aria-selected="false" href="#/alldata/" title='See all the users suscribed and all the operations done' style={{ color: 'black' }}>All Data</a>
                     </li>
                 </ul>
                 </div>
