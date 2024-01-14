@@ -109,7 +109,7 @@ function Login(){
                     Password<br/>
                     <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.currentTarget.value)} /><br/>
                     <button type="submit" className="btn btn-light" onClick={handleLogin}>Login</button><br/><br/>
-                    <button type="submit" className="btn btn-light" onClick={loginFB}>Login with Facebook</button>
+                    <button type="submit" className="btn btn-light" onClick={loginFB} title='Only email needed'>Login with Facebook</button>
                     </>              
                 ) : (
                     <>
