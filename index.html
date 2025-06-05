@@ -1,58 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>BadBank</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>BadBank</title>
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"></link>
+    <!-- Bootstrap 5 CSS (corrigiendo el <link>) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 
-        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    </head>
-    <body>
+    <!-- Facebook SDK (manteniendo el bloque, pero revisa que la versión esté vigente) -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '3552129855116358',
+          cookie     : true,
+          xfbml      : true,
+          version    : 'v18.0'
+        });
+        FB.AppEvents.logPageView();
+      };
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
 
-        <div id="root"></div>
+    <!-- React, ReactDOM (usa versiones de producción, actualizadas a 18.x) -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <!-- React Router DOM (usa la versión 6+, que es la moderna) -->
+    <script src="https://unpkg.com/react-router-dom@6/umd/react-router-dom.production.min.js" crossorigin></script>
+    <!-- Firebase Modular SDK (moderna, sin compat) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js" crossorigin></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js" crossorigin></script>
 
-        <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
-        <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
-        <script src="https://unpkg.com/react-router@4.3.1/umd/react-router.min.js" crossorigin></script>
-        <script src="https://unpkg.com/react-router-dom@4.3.1/umd/react-router-dom.min.js" crossorigin></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js" crossorigin></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js" crossorigin></script>
+    <!-- Scripts de tu app (precompilados, sin type="text/babel") -->
+    <!-- RECOMENDADO: Usa bundlers modernos como Vite, Webpack, Parcel, etc. para compilar tu JS a un solo archivo y enlázalo aquí -->
+    <script src="dist/bundle.js"></script>
+    <!-- Si por alguna razón necesitas mantener los archivos separados para pruebas, usa: -->
+    <!--
+    <script src="context.js" defer></script>
+    <script src="init.js" defer></script>
+    <script src="navbar.js" defer></script>
+    <script src="createaccount.js" defer></script>
+    <script src="login.js" defer></script>
+    <script src="deposit.js" defer></script>
+    <script src="withdraw.js" defer></script>
+    <script src="balance.js" defer></script>
+    <script src="alldata.js" defer></script>
+    <script src="home.js" defer></script>
+    <script src="index.js" defer></script>
+    -->
 
-        <script>
-            window.fbAsyncInit = function() {
-                FB.init({
-                appId      : '3552129855116358',
-                cookie     : true,
-                xfbml      : true,
-                version    : 'v18.0'
-                });
-                
-                FB.AppEvents.logPageView();   
-                
-            };
-    
-            (function(d, s, id){
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {return;}
-                js = d.createElement(s); js.id = id;
-                js.src = "https://connect.facebook.net/en_US/sdk.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-            </script>
-
-        <script src="context.js" defer type="text/babel" ></script>
-        <script src="init.js" defer type="text/babel" ></script>
-        <script src="navbar.js" defer type="text/babel" ></script>
-        <script src="createaccount.js" defer type="text/babel" ></script>
-        <script src="login.js" defer type="text/babel" ></script>
-        <script src="deposit.js" defer type="text/babel" ></script>
-        <script src="withdraw.js" defer type="text/babel" ></script>
-        <script src="balance.js" defer type="text/babel" ></script>
-        <script src="alldata.js" defer type="text/babel" ></script>
-        <script src="home.js" defer type="text/babel" ></script>
-        <script src="index.js" defer type="text/babel" ></script>
-
-    </body>
+  </body>
 </html>
